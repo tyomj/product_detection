@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PYTHON=${PYTHON:-"python"}
+PYTHON=${PYTHON:-"python3"}
 
 CONFIG=$1
 CHECKPOINT=$2

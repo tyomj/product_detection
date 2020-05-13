@@ -372,21 +372,23 @@ class CocoDataset(CustomDataset):
                     val = float('{:.3f}'.format(cocoEval.stats[i + 6]))
                     eval_results[item] = val
             else:
+                print(300)
+                cocoEval.params.maxDets = [1, 10, 300]
                 cocoEval.evaluate()
                 cocoEval.accumulate()
                 cocoEval.summarize()
                 if classwise:  # Compute per-category AP
                     pass  # TODO
-                metric_items = [
-                    'mAP', 'mAP_50', 'mAP_75', 'mAP_s', 'mAP_m', 'mAP_l'
-                ]
-                for i in range(len(metric_items)):
-                    key = '{}_{}'.format(metric, metric_items[i])
-                    val = float('{:.3f}'.format(cocoEval.stats[i]))
-                    eval_results[key] = val
-                eval_results['{}_mAP_copypaste'.format(metric)] = (
-                    '{ap[0]:.3f} {ap[1]:.3f} {ap[2]:.3f} {ap[3]:.3f} '
-                    '{ap[4]:.3f} {ap[5]:.3f}').format(ap=cocoEval.stats[:6])
+                # metric_items = [
+                #     'mAP', 'mAP_50', 'mAP_75', 'mAP_s', 'mAP_m', 'mAP_l'
+                # ]
+                # for i in range(len(metric_items)):
+                #     key = '{}_{}'.format(metric, metric_items[i])
+                #     val = float('{:.3f}'.format(cocoEval.stats[i]))
+                #     eval_results[key] = val
+                # eval_results['{}_mAP_copypaste'.format(metric)] = (
+                #     '{ap[0]:.3f} {ap[1]:.3f} {ap[2]:.3f} {ap[3]:.3f} '
+                #     '{ap[4]:.3f} {ap[5]:.3f}').format(ap=cocoEval.stats[:6])
         if tmp_dir is not None:
             tmp_dir.cleanup()
         return eval_results
