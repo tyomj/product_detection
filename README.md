@@ -2,7 +2,7 @@
 
 ## Introduction
 This repository contains code for the 2nd place solution of the detection challenge which is held within CVPR 2020 Retail-Vision workshop.
-For more information see my [report](). For all the experiments [MMDetection v1](https://github.com/open-mmlab/mmdetection/tree/v1.0.0) was used.
+For more information see my [report](https://arxiv.org/abs/2006.07825). For all the experiments [MMDetection v1](https://github.com/open-mmlab/mmdetection/tree/v1.0.0) was used.
 
 ## Dataset
 The dataset has been originally announced by [Eran Goldman et. al](https://arxiv.org/abs/1904.00853). 
@@ -120,4 +120,12 @@ python sku110k_scripts/json_out_to_submit.py --args
 Feel free to cite my report if you use any of the results for benchmarking in your work.
 
 ```
+@misc{kozlov2020working,
+    title={Working with scale: 2nd place solution to Product Detection in Densely Packed Scenes [Technical Report]},
+    author={Artem Kozlov},
+    year={2020},
+    eprint={2006.07825},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
 ```
