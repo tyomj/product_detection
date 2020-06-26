@@ -56,6 +56,7 @@ def xywh2xyxy(xywhs):
 
 
 def imsave(filepath, img):
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
     cv2.imwrite(filepath, img)
 
 
@@ -68,7 +69,8 @@ def split_image(img, bboxes, **kwargs):
 
     img_tiles = []
     for tile in tiles:
-        tile.to_ints().collapse(dc_box=0, dc_nested=1)
+        tile.to_ints()
+        tile.collapse(dc_box=0, dc_nested=1)
         img_tile = get_crop(img, tile.box)
         tile.move_to_origin()
         img_tiles.append(img_tile)
@@ -144,7 +146,7 @@ def main():
         ]
 
         # get tiles
-        tiles = split_on_tiles(img, bboxes, **args)
+        tiles = split_on_tiles(img, bboxes, **vars(args))
         tiles_counter = 0
         for tile_img, tile_ann in tiles:
             dst_img_path = os.path.join(args.out_imdir, image['file_name'])
